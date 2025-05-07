@@ -1,11 +1,24 @@
 from django.db import models
-from django.utils import timezone
+from django.contrib.auth.models import AbstractUser,Group,Permission
 
-class Article (models.Model):
-    objects = None
-    title= models.CharField(max_length=1000)
-    created_date = models.DateTimeField(default=timezone.now)
-    text = models.TextField()
-    published_date = models.DateTimeField(blank=True, null=True  )
+class User(AbstractUser):
+    username = models.CharField(max_length=30, unique=True)  # unique=True обязательно!
+    
 
-# Create your models here.
+    groups = models.ManyToManyField(
+            Group,
+            verbose_name='groups',
+            blank=True,
+            related_name="news_blog_user_set",
+            related_query_name="news_blog_user",
+        )
+    user_permissions = models.ManyToManyField(
+            Permission,
+            verbose_name='user permissions',
+            blank=True,
+            related_name="news_blog_user_set",
+            related_query_name="news_blog_user",
+        )
+
+    class Meta:
+        db_table = 'users'

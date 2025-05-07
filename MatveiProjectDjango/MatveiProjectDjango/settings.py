@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news_blog'
-]
 
+]
+AUTH_USER_MODEL = 'news_blog.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,7 +77,13 @@ WSGI_APPLICATION = 'MatveiProjectDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'magento',
+        'USER': 'root',
+        'PASSWORD': 'myrootpassword',
+        'HOST': '159.69.114.31',  # или IP-адрес сервера MySQL
+        'PORT': '33366',
+        'OPTIONS': {
+        }
     }
 }
 
@@ -98,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
